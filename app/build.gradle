@@ -31,4 +31,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile files('libs/gson-2.5.jar')
     compile 'de.greenrobot:greendao:2.0.0'
+    compile 'com.facebook.fresco:fresco:0.5.3'
 }

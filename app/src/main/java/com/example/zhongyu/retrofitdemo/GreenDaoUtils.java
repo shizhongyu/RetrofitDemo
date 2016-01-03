@@ -9,7 +9,6 @@ import com.example.zhongyu.retrofitdemo.Dao.DaoSession;
 import com.example.zhongyu.retrofitdemo.Dao.News;
 import com.example.zhongyu.retrofitdemo.Dao.NewsDao;
 
-import java.util.Currency;
 import java.util.Date;
 
 import de.greenrobot.dao.query.Query;
