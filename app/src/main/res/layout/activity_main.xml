@@ -17,4 +17,18 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         fresco:placeholderImage="@drawable/ic_girl"/>
+
+    <ImageView
+        android:layout_below="@+id/ic_image_view"
+        android:id="@+id/ic_imageview"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <ImageView
+        android:id="@+id/ic_image_view_glide"
+        android:layout_toRightOf="@+id/ic_imageview"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+
 </RelativeLayout>
