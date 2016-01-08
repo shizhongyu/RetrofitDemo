@@ -1,4 +1,4 @@
-package com.example.zhongyu.retrofitdemo;
+package com.example.zhongyu.retrofitdemo.GreenDaoUtils;
 
 import android.content.Context;
 import android.database.Cursor;

@@ -24,23 +24,22 @@ public class BluetoothService {
     private static final String TAG = "BluetoothService";
 
     private Context context = null;
-    private BluetoothAdapter bluetoothAdapter = BluetoothAdapter
-            .getDefaultAdapter();
     private ArrayList<BluetoothDevice> unbondDevices = null; // 用于存放未配对蓝牙设备
     private ArrayList<BluetoothDevice> bondDevices = null;// 用于存放已配对蓝牙设备
     private RecyclerView unbondDevicesListRecycleView = null;
-    private BluetoolthAdapter bluetoolthAdapter = null;
+    private BluetoothAdapter bluetoolthAdapter;
     public BluetoothService(Context context, RecyclerView unbondDevicesRecycleView, BluetoolthAdapter bluetoolthAdapter) {
         this.context = context;
         this.unbondDevicesListRecycleView = unbondDevicesRecycleView;
         this.unbondDevices = new ArrayList<BluetoothDevice>();
-        this.bluetoothAdapter = bluetoothAdapter;
+        this.bluetoolthAdapter = BluetoothAdapter.getDefaultAdapter();
         this.initIntentFilter();
     }
 
     public BluetoothService(Context context) {
         this.context = context;
         this.initIntentFilter();
+        this.bluetoolthAdapter = BluetoothAdapter.getDefaultAdapter();
         EventBus.getDefault().register(context);
     }
 
@@ -94,7 +93,7 @@ public class BluetoothService {
      * 关闭蓝牙
      */
     public void closeBluetooth() {
-        this.bluetoothAdapter.disable();
+        this.bluetoolthAdapter.disable();
     }
 
     /**
@@ -103,7 +102,7 @@ public class BluetoothService {
      * @return boolean
      */
     public boolean isOpen() {
-        return this.bluetoothAdapter.isEnabled();
+        return this.bluetoolthAdapter.isEnabled();
     }
 
     /*
@@ -112,7 +111,7 @@ public class BluetoothService {
     public void searchDevices() {
         EventBus.getDefault().post(new BlueScanEvent(true));
         // 寻找蓝牙设备，android会将查找到的设备以广播形式发出去
-        this.bluetoothAdapter.startDiscovery();
+        this.bluetoolthAdapter.startDiscovery();
     }
 
     /**
@@ -136,15 +135,16 @@ public class BluetoothService {
 //                        "搜索蓝牙设备中...", true);
             }else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
 //                progressDialog.dismiss();
+                bluetoolthAdapter = null;
                 EventBus.getDefault().post(new BlueScanEvent(false));
             }
 
             if(BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
-                if(bluetoothAdapter.getState() == BluetoothAdapter.STATE_ON) {
+                if(bluetoolthAdapter.getState() == BluetoothAdapter.STATE_ON) {
                     /*
                     * 关闭蓝牙
                     * */
-                }else if(bluetoothAdapter.getState() == BluetoothAdapter.STATE_OFF) {
+                }else if(bluetoolthAdapter.getState() == BluetoothAdapter.STATE_OFF) {
                     /*
                     * 打开蓝牙
                     * */

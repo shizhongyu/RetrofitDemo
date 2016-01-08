@@ -1,4 +1,4 @@
-package com.example.zhongyu.retrofitdemo;
+package com.example.zhongyu.retrofitdemo.RetrofitUtils;
 
 import retrofit.Retrofit;
 

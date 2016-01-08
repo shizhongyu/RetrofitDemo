@@ -1,7 +1,6 @@
 package com.example.zhongyu.retrofitdemo;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,11 +11,15 @@ import android.widget.ImageView;
 
 import com.example.zhongyu.retrofitdemo.Bluetooth.BouetoothActivity;
 import com.example.zhongyu.retrofitdemo.Dao.News;
+import com.example.zhongyu.retrofitdemo.GlideUtils.GlideUtils;
+import com.example.zhongyu.retrofitdemo.GreenDaoUtils.GreenDaoUtils;
+import com.example.zhongyu.retrofitdemo.OkhttpUtils.OkhttpUtils;
+import com.example.zhongyu.retrofitdemo.PicassoUtils.PicassoUtils;
+import com.example.zhongyu.retrofitdemo.RxAndrid.RxAndroidUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
-import java.security.PublicKey;
 import java.util.List;
 
 import de.greenrobot.dao.query.Query;
@@ -47,10 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
 
         init();
-//        frescoTest();
-//        picassoTest();
-//        glideTest();
-//        retrofitTest();
+        test();
     }
 
     public void initViews() {
@@ -147,6 +147,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
         }
     }
+
+    public void test() {
+        RxAndroidTest();
+    }
+
+    public void RxAndroidTest() {
+        RxAndroidUtils.helloWorld();
+        RxAndroidUtils.RxFrom();
+    }
+
 }
 
 

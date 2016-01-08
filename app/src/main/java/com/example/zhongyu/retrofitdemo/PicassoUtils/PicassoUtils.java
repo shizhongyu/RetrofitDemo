@@ -1,4 +1,4 @@
-package com.example.zhongyu.retrofitdemo;
+package com.example.zhongyu.retrofitdemo.PicassoUtils;
 
 import android.content.Context;
 import android.widget.ImageView;
