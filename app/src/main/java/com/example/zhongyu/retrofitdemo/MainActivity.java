@@ -1,29 +1,31 @@
 package com.example.zhongyu.retrofitdemo;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.zhongyu.retrofitdemo.Bluetooth.BouetoothActivity;
 import com.example.zhongyu.retrofitdemo.Dao.News;
-import com.example.zhongyu.retrofitdemo.Retrofit.*;
-import com.example.zhongyu.retrofitdemo.Retrofit.Contributor;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.io.IOException;
+
+import java.security.PublicKey;
 import java.util.List;
 
 import de.greenrobot.dao.query.Query;
-import retrofit.Call;
-import retrofit.Retrofit;
 
 
 /**
  * Created by zhongyu on 1/2/2016.
  */
-public class MainActivity extends Activity{
+public class MainActivity extends Activity implements View.OnClickListener{
     private static final String TAG = "MainActivity";
 
     public static final String API_URL = "https://api.github.com";
@@ -32,6 +34,7 @@ public class MainActivity extends Activity{
 
     private ImageView imageView;
     private ImageView imageViewGlide;
+    private Button btnScanBluetooth;
 
     private static final String IMAGE_URL = "https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/fresco-logo.png";
 
@@ -44,16 +47,26 @@ public class MainActivity extends Activity{
         setContentView(R.layout.activity_main);
 
         init();
-        frescoTest();
-        picassoTest();
-        glideTest();
+//        frescoTest();
+//        picassoTest();
+//        glideTest();
 //        retrofitTest();
+    }
+
+    public void initViews() {
+        btnScanBluetooth = (Button) findViewById(R.id.btn_scan_blurtooth);
+        imageView = (ImageView) findViewById(R.id.ic_imageview);
+        imageViewGlide = (ImageView) findViewById(R.id.ic_image_view_glide);
+    }
+
+    public void initActions() {
+        btnScanBluetooth.setOnClickListener(this);
     }
 
     public void init(){
         okhttpUtils = new OkhttpUtils();
-        imageView = (ImageView) findViewById(R.id.ic_imageview);
-        imageViewGlide = (ImageView) findViewById(R.id.ic_image_view_glide);
+        initViews();
+        initActions();
     }
 
 //    private void retrofitTest(){
@@ -124,6 +137,16 @@ public class MainActivity extends Activity{
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_scan_blurtooth:
+                Intent intent = new Intent(this, BouetoothActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+    }
 }
 
 
