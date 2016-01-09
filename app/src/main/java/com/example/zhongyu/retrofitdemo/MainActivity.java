@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.zhongyu.retrofitdemo.AsyncTask.AsyncTaskActivity;
 import com.example.zhongyu.retrofitdemo.Bluetooth.BouetoothActivity;
 import com.example.zhongyu.retrofitdemo.Dao.News;
 import com.example.zhongyu.retrofitdemo.GlideUtils.GlideUtils;
@@ -141,9 +142,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_scan_blurtooth:
-                Intent intent = new Intent(this, BouetoothActivity.class);
-                startActivity(intent);
-                finish();
+                asyncTashTest();
                 break;
         }
     }
@@ -153,8 +152,19 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
     public void RxAndroidTest() {
-        RxAndroidUtils.helloWorld();
-        RxAndroidUtils.RxFrom();
+        RxAndroidUtils.RxTest();
+    }
+
+    public void asyncTashTest() {
+        Intent intent = new Intent(this, AsyncTaskActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void blueToolthTest() {
+        Intent intent = new Intent(this, BouetoothActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }
