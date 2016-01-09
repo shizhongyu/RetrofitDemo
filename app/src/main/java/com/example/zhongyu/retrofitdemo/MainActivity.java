@@ -18,6 +18,7 @@ import com.example.zhongyu.retrofitdemo.OkhttpUtils.OkhttpUtils;
 import com.example.zhongyu.retrofitdemo.PicassoUtils.PicassoUtils;
 import com.example.zhongyu.retrofitdemo.RxAndrid.RxAndroidUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
@@ -119,8 +120,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     public void frescoTest(){
         Uri uri = Uri.parse(IMAGE_URL);
+        Uri uri1 = Uri.parse("res://drawable/" + R.drawable.k);
         SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.ic_image_view);
-        draweeView.setImageURI(uri);
+        DraweeController draweeController = Fresco.newDraweeControllerBuilder()
+                .setUri(uri1)
+                .setAutoPlayAnimations(true)
+                .build();
+        draweeView.setController(draweeController);
+//        draweeView.setImageURI(uri1);
     }
 
     public void picassoTest(){
@@ -148,7 +155,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
     public void test() {
-        RxAndroidTest();
+//        RxAndroidTest();
+        frescoTest();
     }
 
     public void RxAndroidTest() {
