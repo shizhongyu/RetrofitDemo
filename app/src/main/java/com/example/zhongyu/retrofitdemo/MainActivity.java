@@ -1,6 +1,7 @@
 package com.example.zhongyu.retrofitdemo;
 
 import android.animation.LayoutTransition;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -101,6 +102,10 @@ public class MainActivity extends Activity implements View.OnClickListener, Comp
     public void initActions() {
         btnScanBluetooth.setOnClickListener(this);
         imageAnim.setOnClickListener(this);
+        mAppear.setOnClickListener(this);
+        mChangeApperar.setOnClickListener(this);
+        mDisAppear.setOnClickListener(this);
+        mChangeDisAppear.setOnClickListener(this);
     }
 
     public void init(){
@@ -128,6 +133,20 @@ public class MainActivity extends Activity implements View.OnClickListener, Comp
 //            e.printStackTrace();
 //        }
 //    }
+
+    public void addBtn(View view) {
+        final Button button = new Button(this);
+        button.setText((++mVal) + "");
+        gridLayout.addView(button, Math.min(1, gridLayout.getChildCount()));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridLayout.removeView(button);
+            }
+        });
+    }
+
+
 
     private void okHttptest(){
         okhttpUtils.getOkhttp();
@@ -238,7 +257,27 @@ public class MainActivity extends Activity implements View.OnClickListener, Comp
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        layoutTransition = new LayoutTransition();
+//        layoutTransition.setAnimator(
+//                LayoutTransition.APPEARING,
+//                (mAppear.isChecked() ? layoutTransition.getAnimator(layoutTransition.APPEARING) : null));
 
+        layoutTransition.setAnimator(LayoutTransition.APPEARING, (mAppear
+                .isChecked() ? ObjectAnimator.ofFloat(this, "scaleX", 0, 1) : null));
+
+        layoutTransition.setAnimator(
+                LayoutTransition.CHANGE_APPEARING,
+                (mChangeApperar.isChecked() ? layoutTransition.getAnimator(LayoutTransition.CHANGE_APPEARING) : null));
+
+        layoutTransition.setAnimator(
+                LayoutTransition.CHANGE_DISAPPEARING,
+                (mDisAppear.isChecked() ? layoutTransition.getAnimator(LayoutTransition.DISAPPEARING) : null));
+
+        layoutTransition.setAnimator(
+                LayoutTransition.DISAPPEARING,
+                (mDisAppear.isChecked() ? layoutTransition.getAnimator(LayoutTransition.DISAPPEARING) : null));
+
+        gridLayout.setLayoutTransition(layoutTransition);
     }
 }
 

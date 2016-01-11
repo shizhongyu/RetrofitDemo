@@ -12,6 +12,7 @@
 
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btn_scan_blurtooth"
         android:layout_marginTop="@dimen/test"
         android:text="@string/scan_bluetooth"
@@ -20,24 +21,28 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/ic_image_view"
+        android:visibility="gone"
         android:layout_centerInParent="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
         fresco:placeholderImage="@drawable/ic_girl"/>
 
     <ImageView
+        android:visibility="gone"
         android:layout_below="@+id/ic_image_view"
         android:id="@+id/ic_imageview"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/ic_image_view_glide"
         android:layout_toRightOf="@+id/ic_imageview"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/ic_image_anim"
         android:layout_below="@+id/ic_image_view_glide"
         android:src="@drawable/ic_girl"
@@ -46,6 +51,7 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -66,9 +72,8 @@
 
     <LinearLayout
         android:id="@+id/ic_container"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent">
 
         <Button
