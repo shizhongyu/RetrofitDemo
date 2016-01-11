@@ -1,14 +1,20 @@
 package com.example.zhongyu.retrofitdemo;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 
+import com.example.zhongyu.retrofitdemo.Animation.AnimationUtils;
 import com.example.zhongyu.retrofitdemo.AsyncTask.AsyncTaskActivity;
 import com.example.zhongyu.retrofitdemo.Bluetooth.BouetoothActivity;
 import com.example.zhongyu.retrofitdemo.Dao.News;
@@ -23,14 +29,19 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 
 import java.util.List;
+import java.util.zip.CheckedInputStream;
 
 import de.greenrobot.dao.query.Query;
+
+import static com.example.zhongyu.retrofitdemo.R.id.cancel;
+import static com.example.zhongyu.retrofitdemo.R.id.decor_content_parent;
+import static com.example.zhongyu.retrofitdemo.R.id.ic_image_anim;
 
 
 /**
  * Created by zhongyu on 1/2/2016.
  */
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener{
     private static final String TAG = "MainActivity";
 
     public static final String API_URL = "https://api.github.com";
@@ -40,6 +51,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private ImageView imageView;
     private ImageView imageViewGlide;
     private Button btnScanBluetooth;
+    private ImageView imageAnim;
+    private ViewGroup viewGroup;
+    private GridLayout gridLayout;
+    private int mVal;
+    private LayoutTransition layoutTransition;
+    private CheckBox mAppear, mChangeApperar, mDisAppear, mChangeDisAppear;
 
     private static final String IMAGE_URL = "https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/fresco-logo.png";
 
@@ -59,10 +76,31 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnScanBluetooth = (Button) findViewById(R.id.btn_scan_blurtooth);
         imageView = (ImageView) findViewById(R.id.ic_imageview);
         imageViewGlide = (ImageView) findViewById(R.id.ic_image_view_glide);
+        imageAnim = (ImageView) findViewById(R.id.ic_image_anim);
+        viewGroup = (ViewGroup) findViewById(R.id.ic_container);
+        mAppear = (CheckBox) findViewById(R.id.id_appear);
+        mChangeApperar = (CheckBox) findViewById(R.id.id_change_appear);
+        mDisAppear = (CheckBox) findViewById(R.id.id_disappear);
+        mChangeDisAppear = (CheckBox) findViewById(R.id.id_change_disappear);
+        /*
+        * create GirdLayout
+        * */
+        gridLayout = new GridLayout(this);
+        /*
+        *
+        * */
+        gridLayout.setColumnCount(5);
+        /*
+        * 添加到布局文件中
+        * */
+        viewGroup.addView(gridLayout);
+        layoutTransition = new LayoutTransition();
+        gridLayout.setLayoutTransition(layoutTransition);
     }
 
     public void initActions() {
         btnScanBluetooth.setOnClickListener(this);
+        imageAnim.setOnClickListener(this);
     }
 
     public void init(){
@@ -151,12 +189,23 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.btn_scan_blurtooth:
                 asyncTashTest();
                 break;
+            case R.id.ic_image_anim:
+                animationTest(imageAnim);
+                break;
+            case R.id.btn_vertical:
+                AnimationUtils.animSquence(imageAnim);
+                break;
+            case R.id.btn_para:
+                animationTest(imageAnim);
+                break;
+            default:
+                break;
         }
     }
 
     public void test() {
 //        RxAndroidTest();
-        frescoTest();
+//        frescoTest();
     }
 
     public void RxAndroidTest() {
@@ -175,7 +224,25 @@ public class MainActivity extends Activity implements View.OnClickListener{
         finish();
     }
 
+
+    private void animationTest(View view) {
+//        AnimationUtils.rotateyAnimRun(view);
+//        AnimationUtils.animationSet(view);
+//        AnimationUtils.animationPara(view);
+//        AnimationUtils.animFaceOut(view);
+//        AnimationUtils.animTogerther(view);
+//        AnimationUtils.animSquence(view);
+//        AnimationUtils.scaleX(view, this);
+        AnimationUtils.scaleXY(view, this);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+    }
 }
+
+
 
 
 
