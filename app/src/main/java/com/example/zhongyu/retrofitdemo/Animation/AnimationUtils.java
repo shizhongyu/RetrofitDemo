@@ -16,11 +16,12 @@ import android.view.animation.LinearInterpolator;
 
 import com.bumptech.glide.load.model.ImageVideoWrapper;
 import com.example.zhongyu.retrofitdemo.R;
+import com.example.zhongyu.retrofitdemo.Utils.SingletonUtils;
 
 /**
  * Created by zhongyu on 1/10/2016.
  */
-public class AnimationUtils {
+public class AnimationUtils extends SingletonUtils<AnimationUtils>{
 
     private Context context;
 
@@ -145,6 +146,11 @@ public class AnimationUtils {
         view.invalidate();
         animator.setTarget(view);
         animator.start();
+    }
+
+    @Override
+    protected AnimationUtils newInstance() {
+        return getInstance();
     }
 }
 
